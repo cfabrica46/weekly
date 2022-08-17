@@ -1,0 +1,91 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# production
+/build
+
+# compiled output
+/dist
+/tmp
+
+# dependencies
+/node_modules
+/client/node_modules
+/.pnp
+.pnp.js
+mocks/node_modules
+/bower_components
+
+# testing
+/coverage
+*.out
+*_out
+
+# ides and editors
+.iml
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+.metadata/
+dist
+.vs/
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# misc
+/.sass-cache
+/connect.lock
+
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+/spec/features/isolation/step_definitions/*.pdf
+
+#logs
+/logs/*.log
+/logs/.audit.json
+
+#System Files
+.DS_Store
+Thumbs.db
+
+
+# npm-debug
+npm-debug.*
+
+# reports
+coverage/*
+*.out
+*_out
+artillery-report/
+.nyc_output/
+
+# Test binary, built with `go test -c`
+coverfile_out*
+
+### Go Patch ###
+/build/
+/build/bin/api-bfco-create-board-of-directors
+
+# Vscode generated
+/.vscode/
+
+# IntelliJ
+.idea/
+
