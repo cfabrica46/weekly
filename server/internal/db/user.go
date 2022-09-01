@@ -41,7 +41,7 @@ func (db *DB) GetAllUsers() (users []User, err error) {
 }
 
 // GetUserByID ...
-func (db DB) GetUserByID(id int) (user User, err error) {
+func (db DB) GetUserByID(id int) (user *User, err error) {
 	row := db.QueryRow("SELECT id, username, password, email FROM users WHERE id = $1", id)
 
 	err = row.Scan(&user.ID, &user.Username, &user.Password, &user.Email)
