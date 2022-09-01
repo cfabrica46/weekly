@@ -1,0 +1,39 @@
+{
+	"User": {
+		"ID": 1,
+		"Username": "username",
+		"Password": "password",
+		"Email": "email@email.com",
+		"Monday": {
+			"Tasks": [
+				{
+					"Title": "Weekly",
+					"Descritpion": "Do Weekly"
+				}
+			]
+		}
+	}
+}
+
+
+{
+	"User": {
+		"ID": 1,
+		"Username": "username",
+		"Password": "password",
+		"Email": "email@email.com",
+		"Tasks": [
+			{
+				"Title": "Weekly",
+				"Descritpion": "Do Weekly",
+				"Monday": true,
+				"Tuesday": true,
+				"Wednesday": true,
+				"Thursday": true,
+				"Friday": true,
+				"Saturday": true,
+				"Sunday": true
+			}
+		]
+	}
+}
