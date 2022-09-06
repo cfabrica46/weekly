@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users(
 
 INSERT INTO users(username, password,email)
     VALUES
-        ('username', 'password', 'email@email.com');
+        ('cfabrica46', '01234', 'cfabrica46@gmail.com');
 
 
 --- tasks

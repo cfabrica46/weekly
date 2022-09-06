@@ -42,35 +42,31 @@ func (db *DB) GetAllUsers() (users []User, err error) {
 
 // GetUserByID ...
 func (db DB) GetUserByID(id int) (user *User, err error) {
+	var userAux User
+
 	row := db.QueryRow("SELECT id, username, password, email FROM users WHERE id = $1", id)
 
-	err = row.Scan(&user.ID, &user.Username, &user.Password, &user.Email)
+	err = row.Scan(&userAux.ID, &userAux.Username, &userAux.Password, &userAux.Email)
 	if err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			return User{}, nil
-		}
-
-		return User{}, fmt.Errorf("error to get user by ID: %w", err)
+		return nil, fmt.Errorf("error to get user by ID: %w", err)
 	}
 
 	return user, nil
 }
 
 // GetUserByUsernameAndPassword ...
-func (db DB) GetUserByUsernameAndPassword(username, password string) (user User, err error) {
+func (db DB) GetUserByUsernameAndPassword(username, password string) (user *User, err error) {
+	var userAux User
+
 	row := db.QueryRow(
 		"SELECT id, username, password, email FROM users WHERE username = $1 AND password = $2",
 		username,
 		password,
 	)
 
-	err = row.Scan(&user.ID, &user.Username, &user.Password, &user.Email)
+	err = row.Scan(&userAux.ID, &userAux.Username, &userAux.Password, &userAux.Email)
 	if err != nil {
-		if errors.Is(err, sql.ErrNoRows) {
-			return User{}, nil
-		}
-
-		return User{}, fmt.Errorf("error to get user by username and password: %w", err)
+		return nil, fmt.Errorf("error to get user by username and password: %w", err)
 	}
 
 	return user, nil
