@@ -2,17 +2,7 @@ package db
 
 import "fmt"
 
-/* id INT GENERATED ALWAYS AS IDENTITY,
-	user_id INT REFERENCES users,
-    title VARCHAR(64) NOT NULL UNIQUE,
-    description TEXT NOT NULL UNIQUE,
-	monday BOOLEAN,
-	tuesday BOOLEAN,
-	wednesday BOOLEAN,
-	thursday BOOLEAN,
-	friday BOOLEAN,
-	saturday BOOLEAN,
-	sunday BOOLEAN, */
+type DayOfWeek string
 
 // Task ...
 type Task struct {
@@ -32,6 +22,10 @@ const (
 	queryGetAllTasks = "SELECT id, title, description, monday, tuesday, wednesday, thursday, friday, saturday, sunday FROM tasks"
 
 	queryGetOneDayTasks = "SELECT id, title, description, monday, tuesday, wednesday, thursday, friday, saturday, sunday FROM tasks WHERE $1 = true"
+
+	queryInsertTask = "INSERT INTO tasks(title, description, monday, tuesday, wednesday, thursday, friday, saturday, sunday) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)"
+
+	queryToggleDayOfWeek = "UPDATE tasks SET $1 = NOT $1 WHERE id = $2"
 )
 
 // GetAllTasks ...
@@ -106,4 +100,40 @@ func (db *DB) GetOneDayTask() (tasks []Task, err error) {
 	}
 
 	return tasks, nil
+}
+
+// InsertTask ...
+func (db *DB) InsertTask(task Task) (err error) {
+	_, err = db.Exec(
+		queryInsertTask,
+		task.ID,
+		task.Title,
+		task.Description,
+		task.Monday,
+		task.Tuesday,
+		task.Wednesday,
+		task.Thursday,
+		task.Friday,
+		task.Saturday,
+		task.Sunday,
+	)
+	if err != nil {
+		return fmt.Errorf("error to insert task: %w", err)
+	}
+
+	return nil
+}
+
+// ToggleDayOfTask ...
+func (db *DB) ToggleDayOfTask(id int, day DayOfWeek) (err error) {
+	_, err = db.Exec(
+		queryToggleDayOfWeek,
+		day,
+		id,
+	)
+	if err != nil {
+		return fmt.Errorf("error to Toggle Day of Week task: %w", err)
+	}
+
+	return nil
 }
