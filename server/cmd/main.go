@@ -4,13 +4,18 @@ import (
 	"log"
 	"os"
 
-	"github.com/joho/godotenv"
+	"server/cmd/config"
+	"server/internal/cobra"
 )
 
 func main() {
 	if os.Getenv("IS_DOCKER") != "true" {
-		if err := godotenv.Load(".env"); err != nil {
-			log.Println(err)
+		if err := config.SetEnv(); err != nil {
+			log.Fatal(err)
 		}
+	}
+
+	if err := cobra.Execute(); err != nil {
+		log.Fatal(err)
 	}
 }

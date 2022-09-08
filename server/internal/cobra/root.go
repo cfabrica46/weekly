@@ -10,6 +10,7 @@ var rootCmd = &cobra.Command{Use: "weekly"}
 
 func init() {
 	rootCmd.AddCommand(httpCmd)
+	rootCmd.AddCommand(cliCmd)
 }
 
 func Execute() (err error) {
