@@ -1,4 +1,4 @@
-package cobra
+package cli
 
 import (
 	"fmt"
@@ -6,12 +6,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var cliCmd = &cobra.Command{
+var CliCmd = &cobra.Command{
 	Use:   "cli",
 	Short: "Starts Cli management weekly",
 	Run:   cliStart,
 }
 
 func cliStart(cmd *cobra.Command, args []string) {
-	fmt.Println("Management Cli Weekly")
+	fmt.Println("cli")
 }

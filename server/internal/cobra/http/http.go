@@ -1,4 +1,4 @@
-package cobra
+package http
 
 import (
 	"server/internal/http"
@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var httpCmd = &cobra.Command{
+var HTTPCmd = &cobra.Command{
 	Use:   "http",
 	Short: "Start http server for Weekly",
 	Run: func(cmd *cobra.Command, args []string) {
