@@ -28,6 +28,51 @@ const (
 	queryToggleDayOfWeek = "UPDATE tasks SET $1 = NOT $1 WHERE id = $2"
 )
 
+func (t Task) String() string {
+	var monday, tuesday, wednesday, thursday, friday, saturday, sunday string
+
+	if t.Monday {
+		monday = "monday "
+	}
+
+	if t.Tuesday {
+		tuesday = "tuesday "
+	}
+
+	if t.Wednesday {
+		wednesday = "wednesday "
+	}
+
+	if t.Thursday {
+		thursday = "thursday "
+	}
+
+	if t.Friday {
+		friday = "friday "
+	}
+
+	if t.Saturday {
+		saturday = "saturday "
+	}
+
+	if t.Sunday {
+		sunday = "sunday "
+	}
+
+	return fmt.Sprintf(
+		"Title: %s | Description: %s | Days: %s%s%s%s%s%s%s",
+		t.Title,
+		t.Description,
+		monday,
+		tuesday,
+		wednesday,
+		thursday,
+		friday,
+		saturday,
+		sunday,
+	)
+}
+
 // GetAllTasks ...
 func (db *DB) GetAllTasks() (tasks []Task, err error) {
 	rows, err := db.Query(queryGetAllTasks)

@@ -2,6 +2,7 @@ package cobra
 
 import (
 	"fmt"
+
 	"server/internal/cobra/cli"
 
 	"github.com/spf13/cobra"
@@ -14,5 +15,10 @@ func Execute() (err error) {
 
 	rootCmd.AddCommand(cli.CliCmd)
 
-	return fmt.Errorf("error to execute cobra : %w", rootCmd.Execute())
+	err = rootCmd.Execute()
+	if err != nil {
+		return fmt.Errorf("error to execute cobra : %w", rootCmd.Execute())
+	}
+
+	return nil
 }

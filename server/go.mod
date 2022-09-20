@@ -3,9 +3,8 @@ module server
 go 1.19
 
 require (
-	github.com/cfabrica46/weekly/server v0.0.0-20220907051721-21c14cf2c127
 	github.com/gin-gonic/gin v1.8.1
-	github.com/joho/godotenv v1.4.0
+	github.com/lib/pq v1.10.7
 	github.com/spf13/cobra v1.5.0
 )
 

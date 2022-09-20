@@ -9,7 +9,7 @@ import (
 var CliCmd = &cobra.Command{
 	Use:   "cli",
 	Short: "Starts Cli management weekly",
-	Run:   cliStart,
+	// Run:   cliStart,
 }
 
 func cliStart(cmd *cobra.Command, args []string) {
