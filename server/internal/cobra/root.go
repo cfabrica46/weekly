@@ -12,6 +12,7 @@ var rootCmd = &cobra.Command{Use: "weekly"}
 
 func Execute() (err error) {
 	cli.CliCmd.AddCommand(cli.GetTasksCmd)
+	cli.CliCmd.AddCommand(cli.GetOneDayTasksCmd)
 
 	rootCmd.AddCommand(cli.CliCmd)
 
