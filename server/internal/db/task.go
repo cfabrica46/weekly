@@ -44,7 +44,7 @@ const (
 
 	queryInsertTask = "INSERT INTO tasks(title, description, monday, tuesday, wednesday, thursday, friday, saturday, sunday) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)"
 
-	queryToggleDayOfWeek = "UPDATE tasks SET $1 = NOT $1 WHERE id = $2"
+	queryToggleDayOfWeek = "UPDATE tasks SET %s = NOT %s WHERE id = $1"
 )
 
 func (d DaysOfWeek) String() string {
@@ -186,11 +186,9 @@ func (db *DB) InsertTask(task Task) (err error) {
 
 // ToggleDayOfTask ...
 func (db *DB) ToggleDayOfTask(id int, day DayOfWeek) (err error) {
-	_, err = db.Exec(
-		queryToggleDayOfWeek,
-		day,
-		id,
-	)
+	query := fmt.Sprintf(queryToggleDayOfWeek, day, day)
+
+	_, err = db.Exec(query, id)
 	if err != nil {
 		return fmt.Errorf("error to Toggle Day of Week task: %w", err)
 	}
