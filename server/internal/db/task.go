@@ -44,6 +44,8 @@ const (
 
 	queryInsertTask = "INSERT INTO tasks(title, description, monday, tuesday, wednesday, thursday, friday, saturday, sunday) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)"
 
+	queryDeleteTask = "DELETE FROM tasks WHERE id = $1"
+
 	queryToggleDayOfWeek = "UPDATE tasks SET %s = NOT %s WHERE id = $1"
 )
 
@@ -116,6 +118,23 @@ func (t Tasks) String() string {
 	return str
 }
 
+//nolint:revive
+func GetDaysOfWeek(monday, tuesday, wednesday, thursday, friday, saturday, sunday bool) (daysOfWeek DaysOfWeek) {
+	return DaysOfWeek{
+		Monday:    monday,
+		Tuesday:   tuesday,
+		Wednesday: wednesday,
+		Thursday:  thursday,
+		Friday:    friday,
+		Saturday:  saturday,
+		Sunday:    sunday,
+	}
+}
+
+func GetTask(title, description string, days DaysOfWeek) (task Task) {
+	return Task{Title: title, Description: description, Days: days}
+}
+
 // GetAllTasks ...
 func (db *DB) GetAllTasks() (tasks Tasks, err error) {
 	return GetTasks(db, queryGetAllTasks)
@@ -166,7 +185,6 @@ func GetTasks(db *DB, query string, args ...any) (tasks Tasks, err error) {
 func (db *DB) InsertTask(task Task) (err error) {
 	_, err = db.Exec(
 		queryInsertTask,
-		task.ID,
 		task.Title,
 		task.Description,
 		task.Days.Monday,
@@ -177,6 +195,15 @@ func (db *DB) InsertTask(task Task) (err error) {
 		task.Days.Saturday,
 		task.Days.Sunday,
 	)
+	if err != nil {
+		return fmt.Errorf("error to insert task: %w", err)
+	}
+
+	return nil
+}
+
+func (db *DB) DeleteTask(id int) (err error) {
+	_, err = db.Exec(queryDeleteTask, id)
 	if err != nil {
 		return fmt.Errorf("error to insert task: %w", err)
 	}

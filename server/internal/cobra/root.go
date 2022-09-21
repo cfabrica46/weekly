@@ -14,6 +14,8 @@ func Execute() (err error) {
 	cli.CliCmd.AddCommand(cli.GetTasksCmd)
 	cli.CliCmd.AddCommand(cli.GetOneDayTasksCmd)
 	cli.CliCmd.AddCommand(cli.ToggleDayCmd)
+	cli.CliCmd.AddCommand(cli.DeleteTaskCmd)
+	cli.CliCmd.AddCommand(cli.InsertTaskCmd)
 
 	rootCmd.AddCommand(cli.CliCmd)
 
