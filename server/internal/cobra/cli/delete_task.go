@@ -26,7 +26,7 @@ func cliDeleteTask(_ *cobra.Command, _ []string) {
 	}
 	defer db.Close()
 
-	err = db.DeleteTask(2)
+	err = db.DeleteTask(ID)
 	if err != nil {
 		fmt.Println("error to delete task:", err)
 	}

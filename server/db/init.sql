@@ -3,9 +3,9 @@ DROP TABLE IF EXISTS tasks;
 
 CREATE TABLE IF NOT EXISTS tasks(
     id INT GENERATED ALWAYS AS IDENTITY,
-	user_id INT REFERENCES users,
-    title VARCHAR(64) NOT NULL UNIQUE,
-    description TEXT NOT NULL UNIQUE,
+	-- user_id INT REFERENCES users,
+    title VARCHAR(64) NOT NULL,
+    description TEXT,
 	monday BOOLEAN,
 	tuesday BOOLEAN,
 	wednesday BOOLEAN,

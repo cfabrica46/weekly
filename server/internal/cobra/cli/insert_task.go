@@ -26,9 +26,9 @@ func cliInsertTask(_ *cobra.Command, _ []string) {
 	}
 	defer db.Close()
 
-	daysOfWeek := mydb.GetDaysOfWeek(true, false, false, false, false, false, false)
+	daysOfWeek := mydb.GetDaysOfWeek(Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday)
 
-	err = db.InsertTask(mydb.GetTask("weekly", "do weekly", daysOfWeek))
+	err = db.InsertTask(mydb.GetTask(Title, Description, daysOfWeek))
 	if err != nil {
 		fmt.Println("error to insert task:", err)
 	}

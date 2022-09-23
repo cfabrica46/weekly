@@ -17,7 +17,7 @@ var GetOneDayTasksCmd = &cobra.Command{
 	Run:   cliGetOneDayTasks,
 }
 
-func cliGetOneDayTasks(_ *cobra.Command, _ []string) {
+func cliGetOneDayTasks(cmd *cobra.Command, _ []string) {
 	db, err := mydb.Open(mydb.DriverDefault, util.GetDBInfo())
 	if err != nil {
 		fmt.Print("error to connect database:", err)
@@ -26,9 +26,18 @@ func cliGetOneDayTasks(_ *cobra.Command, _ []string) {
 	}
 	defer db.Close()
 
-	tasks, err := db.GetOneDayTask(mydb.Monday)
+	dayOfWeek, err := getDayOfWeek()
+	if err != nil {
+		_ = cmd.Help()
+
+		return
+	}
+
+	tasks, err := db.GetOneDayTask(dayOfWeek)
 	if err != nil {
 		fmt.Println("error to get all tasks:", err)
+
+		return
 	}
 
 	fmt.Println(tasks)
