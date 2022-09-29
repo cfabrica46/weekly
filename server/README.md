@@ -1,10 +1,11 @@
-# Requerimientos
+# Weekly
 
-> Obtener todas las tareas
-> Obtener todas las tareas de un dia
-> Setear tareas
-> Modificar Tareas
+## Run
+~~~
+go run weekly/main.go 
+~~~
 
-
-> Usar Cobra y por defecto habilitar un server http 
-> Que se pueda gestionar el programa por terminal
+## Install As A Command
+~~~
+cd weekly && go build && go install
+~~~
