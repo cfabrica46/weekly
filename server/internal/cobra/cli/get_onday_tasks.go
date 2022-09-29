@@ -17,7 +17,7 @@ var GetOneDayTasksCmd = &cobra.Command{
 	Run:   cliGetOneDayTasks,
 }
 
-func cliGetOneDayTasks(cmd *cobra.Command, _ []string) {
+func cliGetOneDayTasks(_ *cobra.Command, _ []string) {
 	var disp displayer
 
 	db, err := mydb.Open(mydb.DriverDefault, util.GetDBInfo())
@@ -39,7 +39,7 @@ func cliGetOneDayTasks(cmd *cobra.Command, _ []string) {
 
 	dayOfWeek, err := getDayOfWeek()
 	if err != nil {
-		_ = cmd.Help()
+		fmt.Println("error to get day of week:", err)
 
 		return
 	}
@@ -50,7 +50,6 @@ func cliGetOneDayTasks(cmd *cobra.Command, _ []string) {
 
 		return
 	}
-	fmt.Println(tasks)
 
 	resp, err := disp.display(tasks)
 	if err != nil {
