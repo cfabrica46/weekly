@@ -4,8 +4,8 @@ import (
 	"log"
 	"os"
 
-	"server/cmd/config"
 	"server/internal/cobra"
+	"server/weekly/config"
 )
 
 func main() {

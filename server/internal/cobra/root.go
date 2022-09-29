@@ -12,6 +12,18 @@ var rootCmd = &cobra.Command{Use: "weekly"}
 
 func Execute() (err error) {
 	{
+		cli.GetTasksTodayCmd.Flags().BoolVarP(&cli.DisplayerJSON, "json", "j", false, "format output to JSON")
+		cli.GetTasksTodayCmd.Flags().BoolVarP(&cli.DisplayerXML, "xml", "x", false, "format output to XML")
+
+		cli.GetTasksTodayCmd.MarkFlagsMutuallyExclusive(
+			"json",
+			"xml",
+		)
+
+		cli.CliCmd.AddCommand(cli.GetTasksTodayCmd)
+	}
+
+	{
 		cli.GetTasksCmd.Flags().BoolVarP(&cli.DisplayerJSON, "json", "j", false, "format output to JSON")
 		cli.GetTasksCmd.Flags().BoolVarP(&cli.DisplayerXML, "xml", "x", false, "format output to XML")
 
