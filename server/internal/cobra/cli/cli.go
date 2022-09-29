@@ -22,8 +22,8 @@ var (
 	Saturday  bool
 	Sunday    bool
 
-	FormatterJSON bool
-	FormatterXML  bool
+	DisplayerJSON bool
+	DisplayerXML  bool
 )
 
 var CliCmd = &cobra.Command{

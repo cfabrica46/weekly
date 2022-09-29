@@ -18,6 +18,8 @@ var GetOneDayTasksCmd = &cobra.Command{
 }
 
 func cliGetOneDayTasks(cmd *cobra.Command, _ []string) {
+	var disp displayer
+
 	db, err := mydb.Open(mydb.DriverDefault, util.GetDBInfo())
 	if err != nil {
 		fmt.Print("error to connect database:", err)
@@ -25,6 +27,15 @@ func cliGetOneDayTasks(cmd *cobra.Command, _ []string) {
 		return
 	}
 	defer db.Close()
+
+	switch {
+	case DisplayerJSON:
+		disp = getJSONDisplayer()
+	case DisplayerXML:
+		disp = getXMLDisplayer()
+	default:
+		disp = getDefaultDisplayer()
+	}
 
 	dayOfWeek, err := getDayOfWeek()
 	if err != nil {
@@ -39,6 +50,14 @@ func cliGetOneDayTasks(cmd *cobra.Command, _ []string) {
 
 		return
 	}
-
 	fmt.Println(tasks)
+
+	resp, err := disp.display(tasks)
+	if err != nil {
+		fmt.Print("error display tasks:", err)
+
+		return
+	}
+
+	fmt.Println(string(resp))
 }

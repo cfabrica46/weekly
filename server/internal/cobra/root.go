@@ -12,8 +12,8 @@ var rootCmd = &cobra.Command{Use: "weekly"}
 
 func Execute() (err error) {
 	{
-		cli.GetTasksCmd.Flags().BoolVarP(&cli.FormatterJSON, "json", "j", false, "format output to JSON")
-		cli.GetTasksCmd.Flags().BoolVarP(&cli.FormatterJSON, "xml", "x", false, "format output to XML")
+		cli.GetTasksCmd.Flags().BoolVarP(&cli.DisplayerJSON, "json", "j", false, "format output to JSON")
+		cli.GetTasksCmd.Flags().BoolVarP(&cli.DisplayerXML, "xml", "x", false, "format output to XML")
 
 		cli.GetTasksCmd.MarkFlagsMutuallyExclusive(
 			"json",
@@ -31,8 +31,8 @@ func Execute() (err error) {
 		cli.GetOneDayTasksCmd.Flags().BoolVarP(&cli.Friday, "friday", "5", false, "set friday as an available day for the task")
 		cli.GetOneDayTasksCmd.Flags().BoolVarP(&cli.Saturday, "saturday", "6", false, "set saturday as an available day for the task")
 		cli.GetOneDayTasksCmd.Flags().BoolVarP(&cli.Sunday, "sunday", "7", false, "set sunday as an available day for the task")
-		cli.GetOneDayTasksCmd.Flags().BoolVarP(&cli.FormatterJSON, "json", "j", false, "format output to JSON")
-		cli.GetOneDayTasksCmd.Flags().BoolVarP(&cli.FormatterJSON, "xml", "x", false, "format output to XML")
+		cli.GetOneDayTasksCmd.Flags().BoolVarP(&cli.DisplayerJSON, "json", "j", false, "format output to JSON")
+		cli.GetOneDayTasksCmd.Flags().BoolVarP(&cli.DisplayerXML, "xml", "x", false, "format output to XML")
 
 		cli.GetTasksCmd.MarkFlagsMutuallyExclusive(
 			"json",
