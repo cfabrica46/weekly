@@ -73,6 +73,7 @@ func menuDaysOfWeek() {
 	}
 }
 
+// Crear mapa que contenga variables Monday y respectivos para luego optimizar utilizando el indice
 func getDayOfWeek() (dayOfWeek mydb.DayOfWeek, err error) {
 	switch {
 	case Monday:
